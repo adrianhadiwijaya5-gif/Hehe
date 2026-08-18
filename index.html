@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scoreboard Pro & Tactical Lineup - Pure SVG Template</title>
+    <title>Scoreboard Pro & Tactical Lineup - With Goal Scorers List</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500;700&family=Impact&family=Montserrat:wght@700;900&display=swap');
@@ -99,6 +99,17 @@
             padding: 1px;
         }
         .status-badge svg { width: 100%; height: 100%; }
+
+        /* ICON DI LIST PENCETAK GOL ATAS */
+        .goal-scorer-icon {
+            width: 14px;
+            height: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align: middle;
+        }
+        .goal-scorer-icon svg { width: 100%; height: 100%; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between p-4 md:p-6 space-y-6">
@@ -116,7 +127,7 @@
                 <span id="display-stage" class="theme-text-accent font-bold italic">Babak / Stage</span>
             </div>
 
-            <div class="flex justify-between items-center my-4">
+            <div class="flex justify-between items-start my-4">
                 <!-- HOME TEAM -->
                 <div class="text-center w-1/3 flex flex-col items-center">
                     <div id="container-logo-home" class="w-20 h-20 bg-[#121212] rounded-2xl flex items-center justify-center border border-gray-700 overflow-hidden mb-3 shadow-lg p-2">
@@ -127,7 +138,10 @@
                     </div>
                     <h2 id="name-home" class="team-title font-bold text-xl md:text-2xl text-white tracking-wider truncate max-w-full">HOME TEAM</h2>
                     
-                    <div class="flex gap-1 mt-2 items-center bg-[#121212] rounded-lg px-2 py-0.5 border border-gray-800">
+                    <!-- DAFTAR PENCETAK GOL / EVENT HOME -->
+                    <div id="scorers-home" class="flex flex-col items-center gap-0.5 mt-2 text-[11px] text-gray-300 font-medium min-h-[20px]"></div>
+
+                    <div class="flex gap-1 mt-3 items-center bg-[#121212] rounded-lg px-2 py-0.5 border border-gray-800">
                         <button onclick="modifyScore('home', -1)" class="text-red-400 font-bold px-1.5 text-sm">−</button>
                         <span class="text-[10px] text-gray-500 select-none">SCORE</span>
                         <button onclick="modifyScore('home', 1)" class="text-green-400 font-bold px-1.5 text-sm">+</button>
@@ -135,7 +149,7 @@
                 </div>
 
                 <!-- SCORE & CLOCK CENTER -->
-                <div class="text-center w-1/3 flex flex-col justify-center items-center">
+                <div class="text-center w-1/3 flex flex-col justify-center items-center pt-2">
                     <div class="flex items-center justify-center gap-3 text-3xl md:text-5xl font-extrabold font-['Montserrat'] text-white">
                         <span id="score-home">0</span>
                         <span class="text-gray-500 font-medium text-lg px-1">vs</span>
@@ -164,7 +178,10 @@
                     </div>
                     <h2 id="name-away" class="team-title font-bold text-xl md:text-2xl text-white tracking-wider truncate max-w-full">AWAY TEAM</h2>
                     
-                    <div class="flex gap-1 mt-2 items-center bg-[#121212] rounded-lg px-2 py-0.5 border border-gray-800">
+                    <!-- DAFTAR PENCETAK GOL / EVENT AWAY -->
+                    <div id="scorers-away" class="flex flex-col items-center gap-0.5 mt-2 text-[11px] text-gray-300 font-medium min-h-[20px]"></div>
+
+                    <div class="flex gap-1 mt-3 items-center bg-[#121212] rounded-lg px-2 py-0.5 border border-gray-800">
                         <button onclick="modifyScore('away', -1)" class="text-red-400 font-bold px-1.5 text-sm">−</button>
                         <span class="text-[10px] text-gray-500 select-none">SCORE</span>
                         <button onclick="modifyScore('away', 1)" class="text-green-400 font-bold px-1.5 text-sm">+</button>
@@ -180,7 +197,7 @@
                 <!-- PANEL EVENT PEMAIN -->
                 <div class="google-card p-6 space-y-4">
                     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
-                        <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm1 17.93a8 8 0 01-2 0V17h2zm-4.72-1.12a8 8 0 01-1.42-1.42l1.42-1.42h1.42zm7.44 0l-1.42-1.42h1.42l1.42 1.42a8 8 0 01-1.42 1.42zM12 15a3 3 0 113-3 3 3 0 01-3 3z"/></svg>
+                        <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm1 17.93a8 8 0 01-2 0V17h2zm-4.72-1.12a8 8 0 01-1.42-1.42l1.42-1.42h1.42zm7.44 0l-1.42-1.42h1.42l1.42 1.42a8 8 0 01-1.42 1.42Z"/></svg>
                         Panel Event Pemain & Kartu
                     </h3>
                     
@@ -382,7 +399,6 @@
     </main>
 
     <script>
-        /* KUMPULAN ASLI IKON SVG EVENT LENGKAP */
         const SVG_ICONS = {
             goal: `<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="white" stroke="#1e1e1e" stroke-width="1.5"/><polygon points="12,7 14.5,9 13.5,12 10.5,12 9.5,9" fill="#1e1e1e"/><path d="M12 7L12 2.5 M14.5 9L18.5 7.5 M13.5 12L16 16 M10.5 12L8 16 M9.5 9L5.5 7.5" stroke="#1e1e1e" stroke-width="1.5"/></svg>`,
             own_goal: `<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#e63946" stroke="#b71c1c" stroke-width="1.5"/><polygon points="12,7 14.5,9 13.5,12 10.5,12 9.5,9" fill="white"/><path d="M12 7L12 2.5 M14.5 9L18.5 7.5 M13.5 12L16 16 M10.5 12L8 16 M9.5 9L5.5 7.5" stroke="white" stroke-width="1.5"/></svg>`,
@@ -400,7 +416,8 @@
             return Array.from({ length: 11 }, (_, i) => ({
                 number: i + 1,
                 name: "",
-                event: "none"
+                event: "none",
+                eventTime: ""
             }));
         }
 
@@ -430,6 +447,7 @@
         window.onload = function() {
             populatePlayerEventOptions();
             renderTacticalPitch();
+            updateScoreboardScorers();
         };
 
         function populatePlayerEventOptions() {
@@ -453,7 +471,17 @@
 
             if (playerIdx !== null && matchState.players[team][playerIdx]) {
                 matchState.players[team][playerIdx].event = eventType;
+                
+                // Ambil menit waktu berjalan saat ini jika event goal/kartu diterapkan
+                if (eventType !== 'none') {
+                    const currentMin = Math.floor(matchState.clockSeconds / 60);
+                    matchState.players[team][playerIdx].eventTime = `${currentMin}'`;
+                } else {
+                    matchState.players[team][playerIdx].eventTime = "";
+                }
+
                 renderTacticalPitch();
+                updateScoreboardScorers();
             }
         }
 
@@ -523,13 +551,44 @@
                             <input type="number" value="${p.number || ''}" placeholder="#" oninput="matchState.players['${team}'][${currentIdx}].number = this.value; populatePlayerEventOptions();" class="player-number-input">
                             ${badge}
                         </div>
-                        <input type="text" value="${p.name}" placeholder="Nama ${currentIdx + 1}" oninput="matchState.players['${team}'][${currentIdx}].name = this.value; populatePlayerEventOptions();" class="player-name-input">
+                        <input type="text" value="${p.name}" placeholder="Nama ${currentIdx + 1}" oninput="matchState.players['${team}'][${currentIdx}].name = this.value; populatePlayerEventOptions(); updateScoreboardScorers();" class="player-name-input">
                     `;
                     rowDiv.appendChild(slotDiv);
                     playerIdx++;
                 }
                 container.appendChild(rowDiv);
             });
+        }
+
+        /* RENDER NAMA PENCETAK GOL/EVENT DI BAWAH NAMA TIM PADA SCOREBOARD ATAS */
+        function updateScoreboardScorers() {
+            renderTeamScorers('home');
+            renderTeamScorers('away');
+        }
+
+        function renderTeamScorers(team) {
+            const container = document.getElementById(`scorers-${team}`);
+            const players = matchState.players[team];
+            
+            // Filter pemain yang memiliki event (Goal, Kartu, Assist, dll)
+            const activeEvents = players.filter(p => p.event && p.event !== 'none');
+
+            if (activeEvents.length === 0) {
+                container.innerHTML = "";
+                return;
+            }
+
+            container.innerHTML = activeEvents.map(p => {
+                const playerName = p.name ? p.name : `Pemain #${p.number || '?'}`;
+                const iconSvg = SVG_ICONS[p.event] || '';
+                const timeStr = p.eventTime ? ` ${p.eventTime}` : '';
+                return `
+                    <div class="flex items-center gap-1.5 leading-tight">
+                        <span class="goal-scorer-icon">${iconSvg}</span>
+                        <span>${playerName}${timeStr}</span>
+                    </div>
+                `;
+            }).join('');
         }
 
         /* UPLOAD & RENDER LOGO SVG */
