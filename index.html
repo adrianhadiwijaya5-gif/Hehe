@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scoreboard Pro & Tactical Lineup - Custom Themes</title>
+    <title>Scoreboard Pro & Dynamic Lineup Custom</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500;700&family=Impact&family=Montserrat:wght@700;900&display=swap');
@@ -12,49 +12,18 @@
             font-family: 'Roboto', 'Google Sans', sans-serif;
             background-color: #121212;
             color: #e8eaed;
-            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        /* TEMA: DEFAULT DARK */
-        body.theme-default .google-card { background-color: #1e1e24; border: 1px solid #2d2d38; }
-        body.theme-default .theme-header { background: linear-gradient(135deg, #2b2d42, #1a1a24); border-bottom: 2px solid #3b82f6; }
-        body.theme-default .theme-text-accent { color: #60a5fa; }
-
-        /* TEMA: UEFA CHAMPIONS LEAGUE (UCL) */
-        body.theme-ucl { background-color: #050814; }
-        body.theme-ucl .google-card { background-color: #0b112c; border: 1px solid #1e295d; box-shadow: 0 0 15px rgba(30, 58, 138, 0.3); }
-        body.theme-ucl .theme-header { background: linear-gradient(135deg, #091540, #020617); border-bottom: 2px solid #00f0ff; }
-        body.theme-ucl .theme-text-accent { color: #00f0ff; font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* TEMA: BRI LIGA 1 */
-        body.theme-liga1 { background-color: #0d130e; }
-        body.theme-liga1 .google-card { background-color: #142117; border: 1px solid #23422a; }
-        body.theme-liga1 .theme-header { background: linear-gradient(135deg, #16381e, #0b1a0e); border-bottom: 2px solid #22c55e; }
-        body.theme-liga1 .theme-text-accent { color: #4ade80; }
-
-        /* TEMA: PREMIER LEAGUE */
-        body.theme-pl { background-color: #18001e; }
-        body.theme-pl .google-card { background-color: #270030; border: 1px solid #4a005c; }
-        body.theme-pl .theme-header { background: linear-gradient(135deg, #38003c, #1f0022); border-bottom: 2px solid #00ff85; }
-        body.theme-pl .theme-text-accent { color: #00ff85; }
-
-        /* STYLES UMUM & DRAG ZONE */
-        .flag-dropzone.dragover {
-            border-color: #3b82f6 !important;
-            background-color: rgba(59, 130, 246, 0.25) !important;
-            transform: scale(1.05);
-        }
-        .custom-scroll::-webkit-scrollbar { height: 8px; }
-        .custom-scroll::-webkit-scrollbar-track { background: #1a1a1a; border-radius: 10px; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 10px; }
-
+        .google-card { background-color: #1e1e24; border: 1px solid #2d2d38; }
+        .theme-header { background: linear-gradient(135deg, #2b2d42, #1a1a24); border-bottom: 2px solid #3b82f6; }
+        .theme-text-accent { color: #60a5fa; }
         .team-title { font-family: 'Impact', 'Montserrat', sans-serif; }
 
         /* TAMPILAN LAPANGAN BOLA */
         .pitch-container {
             background-color: #1e6327;
             background-image: repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(0,0,0,0.05) 40px, rgba(0,0,0,0.05) 80px);
-            height: 640px; 
+            height: 600px; 
             border-radius: 16px;
             position: relative;
             box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
@@ -74,416 +43,360 @@
         .center-line { position: absolute; top: 50%; left: 8px; right: 8px; height: 2px; background-color: rgba(255, 255, 255, 0.4); transform: translateY(-50%); }
 
         .formation-rows { position: relative; z-index: 2; display: flex; flex-direction: column-reverse; justify-content: space-between; height: 88%; }
-        .row { display: flex; justify-content: space-around; align-items: center; width: 100%; min-height: 60px; }
-        .player-slot { display: flex; flex-direction: column; align-items: center; width: 75px; position: relative; }
+        .row { display: flex; justify-content: space-around; align-items: center; width: 100%; min-height: 50px; }
+        .player-slot { display: flex; flex-direction: column; align-items: center; width: 65px; position: relative; }
         
         .player-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px; 
-            background-color: #fff;
-            border: 2px solid #1a1a1a;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%; 
+            background-color: #3b82f6;
+            color: #fff;
+            border: 2px solid #fff;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: bold;
             box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-            position: relative;
-            transition: all 0.2s ease;
-            cursor: grab;
-            user-select: none;
-            overflow: visible;
         }
-        .player-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
-        
-        .player-events-container {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            display: flex;
-            gap: 2px;
-            background: rgba(0, 0, 0, 0.85);
-            padding: 2px 4px;
-            border-radius: 6px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.6);
-            z-index: 20;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        .player-events-container svg { width: 15px; height: 15px; display: block; }
 
         .player-name-input {
-            width: 85px; font-size: 10px; text-align: center; background: rgba(0, 0, 0, 0.85);
-            border: 1px solid transparent; color: white; margin-top: 5px; border-radius: 4px; padding: 2px 1px; outline: none;
+            width: 75px; font-size: 10px; text-align: center; background: rgba(0, 0, 0, 0.85);
+            border: 1px solid transparent; color: white; margin-top: 4px; border-radius: 4px; padding: 2px 1px; outline: none;
         }
         .player-name-input:focus { background: #111; border: 1px solid #3b82f6; }
-
-        #custom-context-menu {
-            position: absolute; z-index: 1000; background-color: #27272a; border: 1px solid #3f3f46;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5); border-radius: 8px; width: 170px; display: none;
-        }
-        #custom-context-menu button {
-            width: 100%; text-align: left; padding: 8px 12px; font-size: 11px; color: #e8eaed;
-            display: flex; align-items: center; gap: 8px; transition: background 0.2s;
-        }
-        #custom-context-menu button:hover { background-color: #3f3f46; }
-        .menu-divider { height: 1px; background-color: #3f3f46; margin: 4px 0; }
     </style>
 </head>
-<body class="theme-default min-h-screen flex flex-col justify-between p-4 md:p-6 space-y-6">
+<body class="min-h-screen flex flex-col justify-between p-4 md:p-6 space-y-6">
 
     <main class="max-w-[1100px] w-full mx-auto space-y-6">
         
-        <!-- BROADCAST THEME SELECTOR -->
-        <div class="google-card p-4 rounded-xl flex flex-wrap items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">🏆 Pilih Tema Broadcast:</span>
-                <select id="theme-selector" onchange="changeCompetitionTheme(this.value)" class="bg-[#2a2d32] text-white text-xs font-bold px-3 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-blue-500">
-                    <option value="theme-default">Standard Dark Broadcast</option>
-                    <option value="theme-ucl">⭐ UEFA Champions League (UCL)</option>
-                    <option value="theme-liga1">🇮🇩 BRI Liga 1 Indonesia</option>
-                    <option value="theme-pl">🦁 Premier League</option>
-                </select>
+        <!-- SCOREBOARD DISPLAY -->
+        <div class="google-card p-6">
+            <div class="theme-header p-3 rounded-lg flex justify-between items-center text-xs text-gray-300 font-medium mb-4">
+                <div class="flex items-center gap-2">
+                    <span id="display-tournament" class="text-white font-bold tracking-wide">Scoreboard Pro</span>
+                    <span>•</span>
+                    <span id="match-status-pill" class="text-green-400 font-bold">1st Half</span>
+                </div>
+                <span id="display-stage" class="theme-text-accent font-bold">Match Details</span>
             </div>
-            <div id="theme-badge-display" class="text-xs font-bold px-3 py-1 rounded-full bg-blue-900/40 text-blue-400 border border-blue-800">
-                Standard Mode
+
+            <div class="flex justify-between items-center my-4">
+                <!-- HOME TEAM -->
+                <div class="text-center w-1/3 flex flex-col items-center">
+                    <div class="w-20 h-20 bg-[#121212] rounded-2xl flex items-center justify-center border border-gray-700 overflow-hidden mb-3 shadow-lg">
+                        <img id="img-home" class="w-full h-full object-contain p-1 hidden">
+                        <span id="text-placeholder-home" class="text-gray-500 text-xs">No Logo</span>
+                    </div>
+                    <h2 id="name-home" class="team-title font-bold text-xl md:text-2xl text-white tracking-wider truncate max-w-full">HOME</h2>
+                    
+                    <div class="flex gap-1 mt-2 items-center bg-[#121212] rounded-lg px-2 py-0.5 border border-gray-800">
+                        <button onclick="modifyScore('home', -1)" class="text-red-400 font-bold px-1.5 text-sm">−</button>
+                        <span class="text-[10px] text-gray-500 select-none">SCORE</span>
+                        <button onclick="modifyScore('home', 1)" class="text-green-400 font-bold px-1.5 text-sm">+</button>
+                    </div>
+                </div>
+
+                <!-- SCORE & CLOCK CENTER -->
+                <div class="text-center w-1/3 flex flex-col justify-center items-center">
+                    <div class="flex items-center justify-center gap-3 text-3xl md:text-5xl font-extrabold font-['Montserrat'] text-white">
+                        <span id="score-home">0</span>
+                        <span class="text-gray-500 font-medium text-lg px-1">vs</span>
+                        <span id="score-away">0</span>
+                    </div>
+                    <div id="clock-display" class="mt-3 text-gray-200 font-bold text-sm bg-[#121212] px-3 py-1 rounded-full border border-gray-800 font-mono tracking-wider">
+                        00:00
+                    </div>
+                </div>
+
+                <!-- AWAY TEAM -->
+                <div class="text-center w-1/3 flex flex-col items-center">
+                    <div class="w-20 h-20 bg-[#121212] rounded-2xl flex items-center justify-center border border-gray-700 overflow-hidden mb-3 shadow-lg">
+                        <img id="img-away" class="w-full h-full object-contain p-1 hidden">
+                        <span id="text-placeholder-away" class="text-gray-500 text-xs">No Logo</span>
+                    </div>
+                    <h2 id="name-away" class="team-title font-bold text-xl md:text-2xl text-white tracking-wider truncate max-w-full">AWAY</h2>
+                    
+                    <div class="flex gap-1 mt-2 items-center bg-[#121212] rounded-lg px-2 py-0.5 border border-gray-800">
+                        <button onclick="modifyScore('away', -1)" class="text-red-400 font-bold px-1.5 text-sm">−</button>
+                        <span class="text-[10px] text-gray-500 select-none">SCORE</span>
+                        <button onclick="modifyScore('away', 1)" class="text-green-400 font-bold px-1.5 text-sm">+</button>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-[1fr_440px] gap-6">
             
-            <!-- SCOREBOARD & CONTROL -->
+            <!-- CONTROLS & LOGO SETTINGS -->
             <div class="space-y-6">
-                <div class="google-card p-6 transition-all duration-300">
-                    <div class="theme-header p-3 rounded-lg flex justify-between items-center text-xs text-gray-300 font-medium mb-4">
-                        <div class="flex items-center gap-2">
-                            <span id="display-tournament" class="text-white font-bold tracking-wide">Scoreboard Pro</span>
-                            <span>•</span>
-                            <span id="match-status-pill" class="text-gray-400 font-bold">1st Half</span>
+                <!-- PANEL EDIT DETAIL MATCH -->
+                <div class="google-card p-6 space-y-4">
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider">⚙️ Edit Detail Match</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                            <label class="text-[10px] text-gray-400 font-bold block mb-1">NAMA TURNAMEN/LIGA</label>
+                            <input type="text" id="input-tournament" value="Scoreboard Pro" oninput="updateMatchDetails()" placeholder="misal: Champions League" class="w-full bg-[#2a2d32] border border-gray-700 text-xs text-white p-2 rounded-lg outline-none focus:border-blue-500">
                         </div>
-                        <span id="display-stage" class="theme-text-accent font-bold">Match Details</span>
-                    </div>
-
-                    <div class="flex justify-between items-center my-4">
-                        <!-- HOME TEAM -->
-                        <div class="text-center w-1/3 flex flex-col items-center">
-                            <div id="drop-home" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="handleDrop(event, 'home')" 
-                                 class="flag-dropzone w-20 h-20 bg-[#121212] rounded-2xl flex items-center justify-center border-2 border-dashed border-gray-600 transition-all overflow-hidden mb-3 shadow-lg relative group cursor-pointer">
-                                <div id="text-placeholder-home" class="text-gray-500 flex flex-col items-center gap-1 p-2 text-center">
-                                    <svg class="w-6 h-6 text-gray-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                                    <span class="text-[9px]">Drag Logo</span>
-                                </div>
-                                <img id="img-home" class="w-full h-full object-contain p-1 hidden">
-                            </div>
-                            <h2 id="name-home" class="team-title font-bold text-xl md:text-2xl text-white tracking-wider truncate max-w-full">HOME</h2>
-                            
-                            <div class="flex gap-1 mt-2 items-center bg-[#121212] rounded-lg px-2 py-0.5 border border-gray-800">
-                                <button onclick="modifyScoreDirectly('home', -1)" class="text-red-400 hover:text-red-300 font-bold px-1.5 text-sm">−</button>
-                                <span class="text-[10px] text-gray-500 select-none">SCORE</span>
-                                <button onclick="modifyScoreDirectly('home', 1)" class="text-green-400 hover:text-green-300 font-bold px-1.5 text-sm">+</button>
-                            </div>
+                        <div>
+                            <label class="text-[10px] text-gray-400 font-bold block mb-1">BABAK / STAGE</label>
+                            <input type="text" id="input-stage" value="Match Details" oninput="updateMatchDetails()" placeholder="misal: Final / Group A" class="w-full bg-[#2a2d32] border border-gray-700 text-xs text-white p-2 rounded-lg outline-none focus:border-blue-500">
                         </div>
-
-                        <!-- SCORE & CLOCK CENTER -->
-                        <div class="text-center w-1/3 flex flex-col justify-center items-center">
-                            <div class="flex items-center justify-center gap-3 text-3xl md:text-5xl font-extrabold font-['Montserrat'] text-white">
-                                <span id="score-home">0</span>
-                                <span id="score-separator" class="text-gray-500 font-medium text-lg px-1">vs</span>
-                                <span id="score-away">0</span>
-                            </div>
-                            
-                            <div id="p-score-hud" class="text-xs font-extrabold theme-text-accent mt-2 hidden px-2 py-0.5 bg-black/40 rounded border border-gray-800">
-                                PEN: <span id="p-score-home">0</span> - <span id="p-score-away">0</span>
-                            </div>
-                            
-                            <div class="flex items-center gap-1.5 mt-3">
-                                <div id="clock-display" class="text-gray-200 font-bold text-sm bg-[#121212] px-3 py-1 rounded-full border border-gray-800 font-mono tracking-wider">
-                                    00:00
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- AWAY TEAM -->
-                        <div class="text-center w-1/3 flex flex-col items-center">
-                            <div id="drop-away" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="handleDrop(event, 'away')" 
-                                 class="flag-dropzone w-20 h-20 bg-[#121212] rounded-2xl flex items-center justify-center border-2 border-dashed border-gray-600 transition-all overflow-hidden mb-3 shadow-lg relative group cursor-pointer">
-                                <div id="text-placeholder-away" class="text-gray-500 flex flex-col items-center gap-1 p-2 text-center">
-                                    <svg class="w-6 h-6 text-gray-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                                    <span class="text-[9px]">Drag Logo</span>
-                                </div>
-                                <img id="img-away" class="w-full h-full object-contain p-1 hidden">
-                            </div>
-                            <h2 id="name-away" class="team-title font-bold text-xl md:text-2xl text-white tracking-wider truncate max-w-full">AWAY</h2>
-                            
-                            <div class="flex gap-1 mt-2 items-center bg-[#121212] rounded-lg px-2 py-0.5 border border-gray-800">
-                                <button onclick="modifyScoreDirectly('away', -1)" class="text-red-400 hover:text-red-300 font-bold px-1.5 text-sm">−</button>
-                                <span class="text-[10px] text-gray-500 select-none">SCORE</span>
-                                <button onclick="modifyScoreDirectly('away', 1)" class="text-green-400 hover:text-green-300 font-bold px-1.5 text-sm">+</button>
-                            </div>
+                        <div>
+                            <label class="text-[10px] text-gray-400 font-bold block mb-1">STATUS BABAK</label>
+                            <select id="select-status" onchange="updateMatchDetails()" class="w-full bg-[#2a2d32] border border-gray-700 text-xs font-bold text-white p-2 rounded-lg outline-none focus:border-blue-500">
+                                <option value="1st Half">1st Half</option>
+                                <option value="2nd Half">2nd Half</option>
+                                <option value="HT (Half Time)">HT (Half Time)</option>
+                                <option value="Extra Time">Extra Time</option>
+                                <option value="Penalty Shootout">Penalty Shootout</option>
+                                <option value="FT (Full Time)">FT (Full Time)</option>
+                            </select>
                         </div>
                     </div>
-
-                    <!-- EVENTS LOG -->
-                    <div id="events-layout-box" class="border-t border-gray-800 pt-4 mt-6 grid grid-cols-[1fr_55px_1fr] gap-2 text-xs md:text-sm hidden items-center">
-                        <div id="events-home" class="text-gray-300 space-y-2 font-medium"></div>
-                        <div id="events-divider" class="flex flex-col items-center gap-2 text-gray-500 text-xs"></div>
-                        <div id="events-away" class="text-gray-300 space-y-2 font-medium"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PITCH DISPLAY -->
-            <div class="pitch-container">
-                <div class="pitch-lines"></div>
-                <div class="penalty-box top"></div>
-                <div class="center-circle"></div>
-                <div class="center-line"></div>
-                <div class="penalty-box bottom"></div>
-                
-                <div class="relative z-[2] flex justify-between items-center bg-black/80 px-3 py-2 rounded-full text-xs backdrop-blur-sm border border-white/10">
-                    <div class="flex items-center gap-2 font-bold text-white">
-                        <img id="pitch-flag-icon" class="w-5 h-5 object-contain rounded hidden">
-                        <span id="pitch-active-team">Lineup</span>
-                    </div>
-                    <div id="pitch-formation-badge" class="bg-green-600 text-[10px] font-bold px-2.5 py-0.5 rounded-full text-white uppercase tracking-wider">4-3-3</div>
                 </div>
 
-                <div class="formation-rows" id="formationRows"></div>
-            </div>
-
-        </div>
-
-        <!-- CONTROL & MATCH DETAILS SETTINGS -->
-        <div class="google-card p-6 space-y-6">
-            <div class="flex flex-wrap justify-between items-center border-b border-gray-800 pb-4 gap-4">
-                <h3 class="text-sm font-bold tracking-wider uppercase theme-text-accent">🎮 Control & Match Engine</h3>
-                <div class="flex gap-3">
-                    <button id="btn-clock-toggle" onclick="toggleClock()" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-lg">
-                        Mulai Pertandingan
-                    </button>
-                    <button id="btn-save-match" onclick="saveMatchToDatabase()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-lg">
-                        💾 Simpan Ke Database
-                    </button>
-                </div>
-            </div>
-
-            <!-- FITUR EDIT MATCH DETAILS & FASE PERTANDINGAN -->
-            <div class="bg-[#121212] p-4 rounded-xl border border-gray-800 space-y-4">
-                <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">⚙️ Pengaturan Match Details & Fase</h4>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-                    <div>
-                        <label class="text-[10px] text-gray-500 font-bold block mb-1">NAMA KOMPETISI</label>
-                        <input type="text" id="input-tournament-name" value="Scoreboard Pro" oninput="updateMatchDetails()" placeholder="Contoh: UEFA Champions League" class="w-full bg-[#2a2d32] border border-gray-700 text-xs font-bold text-white rounded-lg p-2.5 focus:outline-none focus:border-blue-500">
-                    </div>
-                    <div>
-                        <label class="text-[10px] text-gray-500 font-bold block mb-1">STAGE / DETAIL PERTANDINGAN</label>
-                        <input type="text" id="input-stage-name" value="Match Details" oninput="updateMatchDetails()" placeholder="Contoh: Group Stage - Matchday 1" class="w-full bg-[#2a2d32] border border-gray-700 text-xs font-bold text-white rounded-lg p-2.5 focus:outline-none focus:border-blue-500">
-                    </div>
-                    <div>
-                        <label class="text-[10px] text-gray-500 font-bold block mb-1">FASE PERTANDINGAN</label>
-                        <select id="select-match-phase" onchange="updateMatchPhase(this.value)" class="w-full bg-[#2a2d32] border border-gray-700 text-xs font-bold text-white rounded-lg p-2.5 focus:outline-none focus:border-blue-500">
-                            <option value="1st Half">1st Half (Babak Pertama)</option>
-                            <option value="Half Time">Half Time (Istirahat)</option>
-                            <option value="2nd Half">2nd Half (Babak Kedua)</option>
-                            <option value="Full Time">Full Time (Selesai)</option>
-                            <option value="Extra Time">Extra Time (Babak Tambahan)</option>
-                            <option value="Penalty Shootout">Penalty Shootout (Adu Penalti)</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <!-- FITUR BARU: SKIP & SET TIMER MANUAL -->
-            <div class="bg-[#121212] p-4 rounded-xl border border-gray-800 space-y-4">
-                <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">⏱️ Pengaturan Waktu (Skip/Set Timer)</h4>
-                <div class="flex flex-wrap items-end gap-3">
-                    <div>
-                        <label class="text-[10px] text-gray-500 font-bold block mb-1">MENIT</label>
-                        <input type="number" id="input-custom-min" value="0" min="0" max="150" class="w-20 bg-[#2a2d32] border border-gray-700 text-xs font-bold text-white rounded-lg p-2.5 focus:outline-none focus:border-purple-500 text-center">
-                    </div>
-                    <div>
-                        <label class="text-[10px] text-gray-500 font-bold block mb-1">DETIK</label>
-                        <input type="number" id="input-custom-sec" value="0" min="0" max="59" class="w-20 bg-[#2a2d32] border border-gray-700 text-xs font-bold text-white rounded-lg p-2.5 focus:outline-none focus:border-purple-500 text-center">
-                    </div>
-                    <button onclick="setCustomTimer()" class="bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs px-4 py-2.5 rounded-lg transition-all shadow-md">
-                        Set Waktu ⏱️
-                    </button>
+                <!-- PANEL INPUT NAMA & LOGO -->
+                <div class="google-card p-6 space-y-4">
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider">🚩 Input Tim & Logo / Bendera</h3>
                     
-                    <div class="flex border-l border-gray-700 pl-3 gap-2 ml-2">
-                        <button onclick="modifyTimerFast(-60)" class="bg-[#2a2d32] hover:bg-gray-700 text-white font-bold text-xs px-3 py-2.5 rounded-lg border border-gray-700 transition-all">-1m</button>
-                        <button onclick="modifyTimerFast(60)" class="bg-[#2a2d32] hover:bg-gray-700 text-white font-bold text-xs px-3 py-2.5 rounded-lg border border-gray-700 transition-all">+1m</button>
-                        <button onclick="modifyTimerFast(300)" class="bg-[#2a2d32] hover:bg-gray-700 text-white font-bold text-xs px-3 py-2.5 rounded-lg border border-gray-700 transition-all">+5m</button>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- HOME CONFIG -->
+                        <div class="bg-[#121212] p-3 rounded-xl border border-gray-800 space-y-2">
+                            <label class="text-[10px] font-bold text-blue-400 block">HOME TEAM</label>
+                            <input type="text" id="input-name-home" value="HOME" oninput="updateTeamNames()" placeholder="Nama Tim Home" class="w-full bg-[#2a2d32] border border-gray-700 text-xs text-white p-2 rounded-lg outline-none">
+                            <input type="file" id="file-logo-home" accept="image/*" onchange="uploadLogo(event, 'home')" class="text-[10px] text-gray-400 file:mr-2 file:py-1 file:px-2 file:rounded-md file:border-0 file:bg-blue-600 file:text-white file:font-bold">
+                            <input type="text" id="url-logo-home" placeholder="atau paste URL gambar..." oninput="setLogoUrl('home', this.value)" class="w-full bg-[#2a2d32] border border-gray-700 text-[10px] text-white p-1.5 rounded-lg outline-none">
+                        </div>
+
+                        <!-- AWAY CONFIG -->
+                        <div class="bg-[#121212] p-3 rounded-xl border border-gray-800 space-y-2">
+                            <label class="text-[10px] font-bold text-red-400 block">AWAY TEAM</label>
+                            <input type="text" id="input-name-away" value="AWAY" oninput="updateTeamNames()" placeholder="Nama Tim Away" class="w-full bg-[#2a2d32] border border-gray-700 text-xs text-white p-2 rounded-lg outline-none">
+                            <input type="file" id="file-logo-away" accept="image/*" onchange="uploadLogo(event, 'away')" class="text-[10px] text-gray-400 file:mr-2 file:py-1 file:px-2 file:rounded-md file:border-0 file:bg-blue-600 file:text-white file:font-bold">
+                            <input type="text" id="url-logo-away" placeholder="atau paste URL gambar..." oninput="setLogoUrl('away', this.value)" class="w-full bg-[#2a2d32] border border-gray-700 text-[10px] text-white p-1.5 rounded-lg outline-none">
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- INCIDENT CONTROLS -->
-            <div class="bg-[#121212] p-4 rounded-xl border border-gray-800 space-y-4">
-                <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Trigger Match Incident</h4>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-                    <div>
-                        <label class="text-[10px] text-gray-500 font-bold block mb-1">TIM</label>
-                        <select id="event-team" class="w-full bg-[#2a2d32] border border-gray-700 text-xs font-bold text-white rounded-lg p-2.5 focus:outline-none">
-                            <option value="home">Home Team</option>
-                            <option value="away">Away Team</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="text-[10px] text-gray-500 font-bold block mb-1">JENIS INCIDENT</label>
-                        <select id="event-type" class="w-full bg-[#2a2d32] border border-gray-700 text-xs font-bold text-white rounded-lg p-2.5 focus:outline-none">
-                            <option value="GOAL">⚽ Gol</option>
-                            <option value="YELLOW">🟨 Kartu Kuning</option>
-                            <option value="RED">🟥 Kartu Merah</option>
-                        </select>
-                    </div>
-
-                    <div class="sm:col-span-2">
-                        <label class="text-[10px] text-gray-500 font-bold block mb-1">NAMA PEMAIN</label>
-                        <input type="text" id="event-player-in" placeholder="Nama Pemain..." class="w-full bg-[#2a2d32] border border-gray-700 text-xs text-white rounded-lg p-2.5 focus:outline-none">
-                    </div>
-
-                    <div class="sm:col-span-2 md:col-span-4 mt-2">
-                        <button onclick="triggerIncident()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs py-3 rounded-lg transition-all uppercase tracking-wider">
-                            ⚡ Masukkan Incident & Sinkronkan
+                <!-- TIMER & ENGINE CONTROLS -->
+                <div class="google-card p-6 space-y-4">
+                    <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+                        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider">⏱️ Control Waktu</h3>
+                        <button id="btn-clock-toggle" onclick="toggleClock()" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all">
+                            Mulai Pertandingan
                         </button>
                     </div>
+
+                    <div class="flex flex-wrap items-end gap-3">
+                        <div>
+                            <label class="text-[10px] text-gray-500 font-bold block mb-1">MENIT</label>
+                            <input type="number" id="input-custom-min" value="0" min="0" class="w-16 bg-[#2a2d32] border border-gray-700 text-xs font-bold text-white rounded-lg p-2 text-center">
+                        </div>
+                        <div>
+                            <label class="text-[10px] text-gray-500 font-bold block mb-1">DETIK</label>
+                            <input type="number" id="input-custom-sec" value="0" min="0" max="59" class="w-16 bg-[#2a2d32] border border-gray-700 text-xs font-bold text-white rounded-lg p-2 text-center">
+                        </div>
+                        <button onclick="setCustomTimer()" class="bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs px-3 py-2 rounded-lg">Set Waktu</button>
+                    </div>
                 </div>
             </div>
+
+            <!-- TACTICAL PITCH DISPLAY -->
+            <div class="space-y-3">
+                <div class="google-card p-3 flex flex-wrap justify-between items-center gap-2">
+                    <div class="flex gap-2">
+                        <button onclick="switchTacticalTeam('home')" id="btn-team-home" class="bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg">Home Lineup</button>
+                        <button onclick="switchTacticalTeam('away')" id="btn-team-away" class="bg-gray-800 text-gray-400 text-xs font-bold px-3 py-1.5 rounded-lg">Away Lineup</button>
+                    </div>
+                    
+                    <!-- INPUT TEKS MANUAL UNTUK FORMASI CUSTOM -->
+                    <div class="flex items-center gap-2">
+                        <span class="text-[10px] text-gray-400 font-bold">FORMASI:</span>
+                        <input type="text" id="input-formation-custom" value="4-3-3" oninput="updateCustomFormation(this.value)" placeholder="Contoh: 4-3-3" class="w-24 bg-[#2a2d32] border border-gray-700 text-xs font-bold text-white text-center p-1.5 rounded-lg outline-none focus:border-blue-500">
+                    </div>
+                </div>
+
+                <div class="pitch-container">
+                    <div class="pitch-lines"></div>
+                    <div class="penalty-box top"></div>
+                    <div class="center-circle"></div>
+                    <div class="center-line"></div>
+                    <div class="penalty-box bottom"></div>
+
+                    <div class="formation-rows" id="formationRows"></div>
+                </div>
+            </div>
+
         </div>
+
+        <!-- DATABASE PERTANDINGAN (BAGIAN BAWAH) -->
+        <div class="google-card p-6 space-y-4">
+            <div class="flex justify-between items-center border-b border-gray-800 pb-3">
+                <h3 class="text-sm font-bold text-white tracking-wider uppercase flex items-center gap-2">
+                    📂 Database History Pertandingan
+                </h3>
+                <button onclick="saveMatchToDatabase()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-lg">
+                    💾 Simpan Ke Database
+                </button>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs text-gray-300">
+                    <thead class="bg-[#121212] text-gray-400 uppercase font-bold text-[10px]">
+                        <tr>
+                            <th class="p-3">Waktu Simpan</th>
+                            <th class="p-3">Turnamen & Stage</th>
+                            <th class="p-3">Tim Home</th>
+                            <th class="p-3 text-center">Skor</th>
+                            <th class="p-3">Tim Away</th>
+                            <th class="p-3">Durasi</th>
+                            <th class="p-3 text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="database-table-body" class="divide-y divide-gray-800">
+                        <tr>
+                            <td colspan="7" class="p-4 text-center text-gray-500 italic">Belum ada data pertandingan tersimpan.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </main>
 
     <script>
-        let flagPresets = [
-            { id: 'rm', name: 'Real Madrid', url: 'https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg' },
-            { id: 'fcb', name: 'FC Barcelona', url: 'https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crcv%29.svg' },
-            { id: 'idn', name: 'Timnas Indonesia', url: 'https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg' }
-        ];
-
-        const SVGS = {
-            "GOAL": `<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="#FFFFFF" stroke="#000000" stroke-width="1.5"/><polygon points="12,7 15,9.5 14,13 10,13 9,9.5" fill="#000000"/></svg>`,
-            "YELLOW": `<svg viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="2" fill="#FACC15" stroke="#EAB308" stroke-width="1.5"/></svg>`,
-            "RED": `<svg viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="2" fill="#EF4444" stroke="#DC2626" stroke-width="1.5"/></svg>`
-        };
-
         let matchState = {
             tournament: "Scoreboard Pro",
             stage: "Match Details",
-            phase: "1st Half",
+            status: "1st Half",
             homeName: "HOME",
             awayName: "AWAY",
             homeLogo: "",
             awayLogo: "",
             homeScore: 0,
             awayScore: 0,
-            activeTacticalTeam: "home",
-            tacticalFormations: { home: "4-3-3", away: "4-3-3" },
+            activeTeam: "home",
+            formations: { home: "4-3-3", away: "4-3-3" },
             players: {
-                home: Array.from({length: 11}, (_, i) => ({ id: i + 1, number: i + 1, name: `Pemain ${i + 1}`, photo: "", events: [] })),
-                away: Array.from({length: 11}, (_, i) => ({ id: i + 101, number: i + 1, name: `Pemain ${i + 1}`, photo: "", events: [] }))
+                home: Array.from({length: 11}, (_, i) => ({ number: i + 1, name: `Pemain ${i + 1}` })),
+                away: Array.from({length: 11}, (_, i) => ({ number: i + 1, name: `Pemain ${i + 1}` }))
             },
-            events: [],
             clockSeconds: 0,
             clockRunning: false,
             clockInterval: null
         };
 
-        const FORMATIONS = {
-            "4-3-3": [[1], [4, 5, 2, 3], [6, 8, 10], [7, 9, 11]],
-            "4-2-3-1": [[1], [4, 5, 2, 3], [6, 8], [7, 10, 11], [9]]
-        };
+        let matchDatabase = [];
 
         window.onload = function() {
             renderTacticalPitch();
         };
 
-        /* ==============================================
-           FITUR BARU: SET TIMER MANUAL & SKIP WAKTU 
-        ================================================ */
-        function setCustomTimer() {
-            const min = parseInt(document.getElementById('input-custom-min').value) || 0;
-            const sec = parseInt(document.getElementById('input-custom-sec').value) || 0;
-            
-            // Kalkulasi total detik dan update state
-            matchState.clockSeconds = (min * 60) + sec;
-            document.getElementById('clock-display').innerText = formatClockTime(matchState.clockSeconds);
-        }
-
-        function modifyTimerFast(secondsToAdd) {
-            // Hindari angka negatif pada timer
-            matchState.clockSeconds = Math.max(0, matchState.clockSeconds + secondsToAdd);
-            
-            // Update input panel agar sinkron
-            document.getElementById('input-custom-min').value = Math.floor(matchState.clockSeconds / 60);
-            document.getElementById('input-custom-sec').value = matchState.clockSeconds % 60;
-            
-            // Update UI timer
-            document.getElementById('clock-display').innerText = formatClockTime(matchState.clockSeconds);
-        }
-
-        /* FUNGSI-FUNGSI PENDUKUNG LAINNYA */
+        /* UPDATE DETAIL MATCH */
         function updateMatchDetails() {
-            matchState.tournament = document.getElementById('input-tournament-name').value.trim() || "Scoreboard Pro";
-            matchState.stage = document.getElementById('input-stage-name').value.trim() || "Match Details";
+            matchState.tournament = document.getElementById('input-tournament').value || "Scoreboard Pro";
+            matchState.stage = document.getElementById('input-stage').value || "Match Details";
+            matchState.status = document.getElementById('select-status').value;
+
             document.getElementById('display-tournament').innerText = matchState.tournament;
             document.getElementById('display-stage').innerText = matchState.stage;
+            document.getElementById('match-status-pill').innerText = matchState.status;
         }
 
-        function updateMatchPhase(phaseVal) {
-            matchState.phase = phaseVal;
-            const statusPill = document.getElementById('match-status-pill');
-            statusPill.innerText = phaseVal;
-            if (phaseVal === "Penalty Shootout") statusPill.className = "text-purple-400 font-bold";
-            else statusPill.className = "text-green-400 font-bold";
+        /* INPUT TEKS MANUAL UNTUK FORMASI */
+        function updateCustomFormation(text) {
+            matchState.formations[matchState.activeTeam] = text.trim();
+            renderTacticalPitch();
         }
 
-        function allowDrop(e) { e.preventDefault(); e.currentTarget.classList.add('dragover'); }
-        function dragLeave(e) { e.currentTarget.classList.remove('dragover'); }
-        function handleDrop(e, target) {
-            e.preventDefault();
-            e.currentTarget.classList.remove('dragover');
-            const url = e.dataTransfer.getData('url');
-            if(url) {
-                if (target === 'home') {
-                    document.getElementById('img-home').src = url;
-                    document.getElementById('img-home').classList.remove('hidden');
-                } else {
-                    document.getElementById('img-away').src = url;
-                    document.getElementById('img-away').classList.remove('hidden');
-                }
+        /* PARSER FORMASI MANUAL KE SUSUNAN BARIS */
+        function parseFormationText(fmtStr) {
+            const parts = fmtStr.split(/[^0-9]+/).map(n => parseInt(n)).filter(n => !isNaN(n) && n > 0);
+            const rowsConfig = [[1]]; 
+            if (parts.length > 0) {
+                parts.forEach(count => rowsConfig.push(count));
+            } else {
+                rowsConfig.push(4, 3, 3);
             }
+            return rowsConfig;
+        }
+
+        /* TACTICAL PITCH ENGINE */
+        function switchTacticalTeam(team) {
+            matchState.activeTeam = team;
+            document.getElementById('btn-team-home').className = team === 'home' ? 'bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg' : 'bg-gray-800 text-gray-400 text-xs font-bold px-3 py-1.5 rounded-lg';
+            document.getElementById('btn-team-away').className = team === 'away' ? 'bg-red-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg' : 'bg-gray-800 text-gray-400 text-xs font-bold px-3 py-1.5 rounded-lg';
+            document.getElementById('input-formation-custom').value = matchState.formations[team];
+            renderTacticalPitch();
         }
 
         function renderTacticalPitch() {
-            const team = matchState.activeTacticalTeam;
-            const formationKey = matchState.tacticalFormations[team];
-            const rowsConfig = FORMATIONS[formationKey] || FORMATIONS["4-3-3"];
+            const team = matchState.activeTeam;
+            const fmtStr = matchState.formations[team];
+            const rowsConfig = parseFormationText(fmtStr);
             const players = matchState.players[team];
             const container = document.getElementById('formationRows');
             container.innerHTML = "";
 
-            let playerIndex = 0;
-            rowsConfig.forEach(rowGroup => {
+            let playerIdx = 0;
+            rowsConfig.forEach(playerCount => {
                 const rowDiv = document.createElement('div');
                 rowDiv.className = "row";
-                rowGroup.forEach(() => {
-                    if (playerIndex >= players.length) return;
-                    const p = players[playerIndex];
+                
+                for (let i = 0; i < playerCount; i++) {
+                    if (playerIdx >= players.length) break;
+                    const p = players[playerIdx];
                     const slotDiv = document.createElement('div');
                     slotDiv.className = "player-slot";
                     slotDiv.innerHTML = `
-                        <div class="player-icon"><span>${p.number}</span></div>
-                        <input type="text" value="${p.name}" class="player-name-input">
+                        <div class="player-icon" style="background-color: ${team === 'home' ? '#3b82f6' : '#ef4444'}">${p.number}</div>
+                        <input type="text" value="${p.name}" oninput="matchState.players['${team}'][${playerIdx}].name = this.value" class="player-name-input">
                     `;
                     rowDiv.appendChild(slotDiv);
-                    playerIndex++;
-                });
+                    playerIdx++;
+                }
                 container.appendChild(rowDiv);
             });
         }
 
-        function modifyScoreDirectly(team, delta) {
+        /* INPUT LOGO / BENDERA */
+        function uploadLogo(event, team) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    setLogoSrc(team, e.target.result);
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function setLogoUrl(team, url) {
+            if (url.trim() !== "") {
+                setLogoSrc(team, url.trim());
+            }
+        }
+
+        function setLogoSrc(team, src) {
+            const imgElem = document.getElementById(`img-${team}`);
+            const placeholder = document.getElementById(`text-placeholder-${team}`);
+            imgElem.src = src;
+            imgElem.classList.remove('hidden');
+            placeholder.classList.add('hidden');
+            matchState[`${team}Logo`] = src;
+        }
+
+        function updateTeamNames() {
+            matchState.homeName = document.getElementById('input-name-home').value || "HOME";
+            matchState.awayName = document.getElementById('input-name-away').value || "AWAY";
+            document.getElementById('name-home').innerText = matchState.homeName;
+            document.getElementById('name-away').innerText = matchState.awayName;
+        }
+
+        function modifyScore(team, delta) {
             if (team === 'home') {
                 matchState.homeScore = Math.max(0, matchState.homeScore + delta);
                 document.getElementById('score-home').innerText = matchState.homeScore;
@@ -493,33 +406,84 @@
             }
         }
 
+        /* TIMER ENGINE */
         function toggleClock() {
             const btn = document.getElementById('btn-clock-toggle');
             if (matchState.clockRunning) {
                 clearInterval(matchState.clockInterval);
                 matchState.clockRunning = false;
                 btn.innerText = "Lanjutkan Waktu";
-                btn.className = "bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-lg";
+                btn.className = "bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all";
             } else {
                 matchState.clockRunning = true;
                 btn.innerText = "Jeda Waktu";
-                btn.className = "bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-lg";
+                btn.className = "bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all";
                 
                 matchState.clockInterval = setInterval(() => {
                     matchState.clockSeconds++;
-                    document.getElementById('clock-display').innerText = formatClockTime(matchState.clockSeconds);
-                    
-                    // Auto-sync ke input panel
-                    document.getElementById('input-custom-min').value = Math.floor(matchState.clockSeconds / 60);
-                    document.getElementById('input-custom-sec').value = matchState.clockSeconds % 60;
+                    document.getElementById('clock-display').innerText = formatTime(matchState.clockSeconds);
                 }, 1000);
             }
         }
 
-        function formatClockTime(seconds) {
-            const mins = Math.floor(seconds / 60);
-            const secs = seconds % 60;
-            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        function setCustomTimer() {
+            const min = parseInt(document.getElementById('input-custom-min').value) || 0;
+            const sec = parseInt(document.getElementById('input-custom-sec').value) || 0;
+            matchState.clockSeconds = (min * 60) + sec;
+            document.getElementById('clock-display').innerText = formatTime(matchState.clockSeconds);
+        }
+
+        function formatTime(sec) {
+            const m = Math.floor(sec / 60);
+            const s = sec % 60;
+            return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        }
+
+        /* DATABASE ENGINE */
+        function saveMatchToDatabase() {
+            const now = new Date();
+            const timeStamp = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + ' - ' + now.toLocaleDateString();
+            
+            const matchData = {
+                id: Date.now(),
+                timestamp: timeStamp,
+                tournamentDetails: `${matchState.tournament} (${matchState.stage})`,
+                home: matchState.homeName,
+                away: matchState.awayName,
+                scoreHome: matchState.homeScore,
+                scoreAway: matchState.awayScore,
+                duration: formatTime(matchState.clockSeconds)
+            };
+
+            matchDatabase.unshift(matchData);
+            renderDatabaseTable();
+        }
+
+        function deleteMatchRecord(id) {
+            matchDatabase = matchDatabase.filter(m => m.id !== id);
+            renderDatabaseTable();
+        }
+
+        function renderDatabaseTable() {
+            const tbody = document.getElementById('database-table-body');
+            if (matchDatabase.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-gray-500 italic">Belum ada data pertandingan tersimpan.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = matchDatabase.map(m => `
+                <tr class="hover:bg-[#1a1a20] transition-all">
+                    <td class="p-3 text-gray-400">${m.timestamp}</td>
+                    <td class="p-3 font-semibold text-blue-400">${m.tournamentDetails}</td>
+                    <td class="p-3 font-bold text-white">${m.home}</td>
+                    <td class="p-3 text-center font-extrabold text-blue-400 bg-black/20">${m.scoreHome} - ${m.scoreAway}</td>
+                    <td class="p-3 font-bold text-white">${m.away}</td>
+                    <td class="p-3 font-mono text-gray-400">${m.duration}</td>
+                    <td class="p-3 text-center">
+                        <button onclick="deleteMatchRecord(${m.id})" class="text-red-400 hover:text-red-300 font-bold text-xs bg-red-950/40 px-2 py-1 rounded border border-red-800">Hapus</button>
+                    </td>
+                </tr>
+            `).join('');
         }
     </script>
 </body>
