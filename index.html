@@ -19,35 +19,27 @@
         body.theme-default .google-card { background-color: #1e1e24; border: 1px solid #2d2d38; }
         body.theme-default .theme-header { background: linear-gradient(135deg, #2b2d42, #1a1a24); border-bottom: 2px solid #3b82f6; }
         body.theme-default .theme-text-accent { color: #60a5fa; }
-        body.theme-default .p-dot.goal { background-color: #22c55e !important; color: #000 !important; }
-        body.theme-default .p-dot.miss { background-color: #ef4444 !important; color: #fff !important; }
 
         /* TEMA: UEFA CHAMPIONS LEAGUE (UCL) */
         body.theme-ucl { background-color: #050814; }
         body.theme-ucl .google-card { background-color: #0b112c; border: 1px solid #1e295d; box-shadow: 0 0 15px rgba(30, 58, 138, 0.3); }
         body.theme-ucl .theme-header { background: linear-gradient(135deg, #091540, #020617); border-bottom: 2px solid #00f0ff; }
         body.theme-ucl .theme-text-accent { color: #00f0ff; font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
-        body.theme-ucl .p-dot.goal { background-color: #00f0ff !important; color: #020617 !important; box-shadow: 0 0 10px #00f0ff; }
-        body.theme-ucl .p-dot.miss { background-color: #e11d48 !important; color: #fff !important; box-shadow: 0 0 10px #e11d48; }
 
         /* TEMA: BRI LIGA 1 */
         body.theme-liga1 { background-color: #0d130e; }
         body.theme-liga1 .google-card { background-color: #142117; border: 1px solid #23422a; }
         body.theme-liga1 .theme-header { background: linear-gradient(135deg, #16381e, #0b1a0e); border-bottom: 2px solid #22c55e; }
         body.theme-liga1 .theme-text-accent { color: #4ade80; }
-        body.theme-liga1 .p-dot.goal { background-color: #16a34a !important; color: #fff !important; }
-        body.theme-liga1 .p-dot.miss { background-color: #dc2626 !important; color: #fff !important; }
 
         /* TEMA: PREMIER LEAGUE */
         body.theme-pl { background-color: #18001e; }
         body.theme-pl .google-card { background-color: #270030; border: 1px solid #4a005c; }
         body.theme-pl .theme-header { background: linear-gradient(135deg, #38003c, #1f0022); border-bottom: 2px solid #00ff85; }
         body.theme-pl .theme-text-accent { color: #00ff85; }
-        body.theme-pl .p-dot.goal { background-color: #00ff85 !important; color: #38003c !important; }
-        body.theme-pl .p-dot.miss { background-color: #ff005a !important; color: #fff !important; }
 
         /* STYLES UMUM & DRAG ZONE */
-        .flag-dropzone.dragover, .player-icon.dragover {
+        .flag-dropzone.dragover {
             border-color: #3b82f6 !important;
             background-color: rgba(59, 130, 246, 0.25) !important;
             transform: scale(1.05);
@@ -55,29 +47,6 @@
         .custom-scroll::-webkit-scrollbar { height: 8px; }
         .custom-scroll::-webkit-scrollbar-track { background: #1a1a1a; border-radius: 10px; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 10px; }
-        
-        /* PENALTY DOTS */
-        .p-dot {
-            width: 34px;
-            height: 34px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #2a2d32;
-            transition: all 0.2s ease;
-            font-family: 'Montserrat', 'Impact', sans-serif;
-            font-size: 16px;
-            font-weight: 900;
-            color: transparent;
-            user-select: none;
-        }
-        .p-dot::after { content: ''; width: 6px; height: 6px; background-color: #6b7280; border-radius: 50%; }
-        .p-dot.active { box-shadow: 0 0 0 2px #121212, 0 0 0 4px #3b82f6; background-color: #374151; }
-        .p-dot.active::after { background-color: #3b82f6; }
-        .p-dot.goal::after, .p-dot.miss::after { display: none; }
-        .p-dot.goal::before { content: '✓'; }
-        .p-dot.miss::before { content: '✕'; }
 
         .team-title { font-family: 'Impact', 'Montserrat', sans-serif; }
 
@@ -128,7 +97,6 @@
         }
         .player-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
         
-        /* Container SVG Badges di Atas Kartu Pemain */
         .player-events-container {
             position: absolute;
             top: -10px;
@@ -142,17 +110,7 @@
             z-index: 20;
             border: 1px solid rgba(255,255,255,0.2);
         }
-        .player-events-container svg {
-            width: 15px;
-            height: 15px;
-            display: block;
-        }
-
-        .status-badge-svg {
-            position: absolute; top: -6px; right: -6px; width: 18px; height: 18px; z-index: 10;
-            display: flex; align-items: center; justify-content: center;
-            filter: drop-shadow(0px 2px 3px rgba(0,0,0,0.6));
-        }
+        .player-events-container svg { width: 15px; height: 15px; display: block; }
 
         .player-name-input {
             width: 85px; font-size: 10px; text-align: center; background: rgba(0, 0, 0, 0.85);
@@ -180,13 +138,11 @@
         <button onclick="setPlayerStatus('NORMAL')">🟢 Normal / Clear</button>
         <button onclick="setPlayerStatus('YELLOW')">🟨 Kartu Kuning</button>
         <button onclick="setPlayerStatus('RED')">🟥 Kartu Merah</button>
-        <button onclick="setPlayerStatus('YELLOW2')">🟨🟥 Kartu Kuning 2</button>
-        <button onclick="setPlayerStatus('INJURY')">🤕 Cedera</button>
-        <button onclick="setPlayerStatus('SUSPENDED')">🚫 Suspend</button>
     </div>
 
     <main class="max-w-[1100px] w-full mx-auto space-y-6">
         
+        <!-- BROADCAST THEME SELECTOR -->
         <div class="google-card p-4 rounded-xl flex flex-wrap items-center justify-between gap-4">
             <div class="flex items-center gap-3">
                 <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">🏆 Pilih Tema Broadcast:</span>
@@ -204,24 +160,26 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-[1fr_440px] gap-6">
             
+            <!-- SCOREBOARD & CONTROL -->
             <div class="space-y-6">
                 <div class="google-card p-6 transition-all duration-300">
                     <div class="theme-header p-3 rounded-lg flex justify-between items-center text-xs text-gray-300 font-medium mb-4">
                         <div class="flex items-center gap-2">
                             <span id="display-tournament" class="text-white font-bold tracking-wide">Scoreboard Pro</span>
                             <span>•</span>
-                            <span id="match-status-pill" class="text-gray-400">Live</span>
+                            <span id="match-status-pill" class="text-gray-400 font-bold">1st Half</span>
                         </div>
                         <span id="display-stage" class="theme-text-accent font-bold">Match Details</span>
                     </div>
 
                     <div class="flex justify-between items-center my-4">
+                        <!-- HOME TEAM -->
                         <div class="text-center w-1/3 flex flex-col items-center">
                             <div id="drop-home" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="handleDrop(event, 'home')" 
                                  class="flag-dropzone w-20 h-20 bg-[#121212] rounded-2xl flex items-center justify-center border-2 border-dashed border-gray-600 transition-all overflow-hidden mb-3 shadow-lg relative group cursor-pointer">
                                 <div id="text-placeholder-home" class="text-gray-500 flex flex-col items-center gap-1 p-2 text-center">
                                     <svg class="w-6 h-6 text-gray-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                                    <span class="text-[9px]">Drag Logo/Bendera</span>
+                                    <span class="text-[9px]">Drag Logo</span>
                                 </div>
                                 <img id="img-home" class="w-full h-full object-contain p-1 hidden">
                             </div>
@@ -234,8 +192,8 @@
                             </div>
                         </div>
 
+                        <!-- SCORE & CLOCK CENTER -->
                         <div class="text-center w-1/3 flex flex-col justify-center items-center">
-                            <div id="clock-status-top" class="text-xs font-bold theme-text-accent mb-2 h-4 tracking-wider uppercase"></div>
                             <div class="flex items-center justify-center gap-3 text-3xl md:text-5xl font-extrabold font-['Montserrat'] text-white">
                                 <span id="score-home">0</span>
                                 <span id="score-separator" class="text-gray-500 font-medium text-lg px-1">vs</span>
@@ -250,18 +208,16 @@
                                 <div id="clock-display" class="text-gray-200 font-bold text-sm bg-[#121212] px-3 py-1 rounded-full border border-gray-800 font-mono tracking-wider">
                                     00:00
                                 </div>
-                                <div id="additional-time-display" class="text-red-500 font-bold text-xs hidden font-mono">
-                                    +0
-                                </div>
                             </div>
                         </div>
 
+                        <!-- AWAY TEAM -->
                         <div class="text-center w-1/3 flex flex-col items-center">
                             <div id="drop-away" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="handleDrop(event, 'away')" 
                                  class="flag-dropzone w-20 h-20 bg-[#121212] rounded-2xl flex items-center justify-center border-2 border-dashed border-gray-600 transition-all overflow-hidden mb-3 shadow-lg relative group cursor-pointer">
                                 <div id="text-placeholder-away" class="text-gray-500 flex flex-col items-center gap-1 p-2 text-center">
                                     <svg class="w-6 h-6 text-gray-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                                    <span class="text-[9px]">Drag Logo/Bendera</span>
+                                    <span class="text-[9px]">Drag Logo</span>
                                 </div>
                                 <img id="img-away" class="w-full h-full object-contain p-1 hidden">
                             </div>
@@ -275,17 +231,7 @@
                         </div>
                     </div>
 
-                    <div id="penalty-board-row" class="mt-6 pt-4 border-t border-gray-800 hidden">
-                        <div class="max-w-xl mx-auto bg-black/40 border border-gray-800 rounded-xl p-4 shadow-2xl">
-                            <div class="grid grid-cols-[1fr_80px_1fr] gap-2 items-center mb-4 text-center border-b border-gray-800 pb-2">
-                                <div id="p-row-name-home" class="text-xs font-bold theme-text-accent tracking-wider truncate uppercase">HOME</div>
-                                <div class="text-[10px] font-extrabold text-purple-400 tracking-wider">SHOOTOUT</div>
-                                <div id="p-row-name-away" class="text-xs font-bold theme-text-accent tracking-wider truncate uppercase">AWAY</div>
-                            </div>
-                            <div id="vertical-penalty-list" class="flex flex-col gap-3"></div>
-                        </div>
-                    </div>
-
+                    <!-- EVENTS LOG -->
                     <div id="events-layout-box" class="border-t border-gray-800 pt-4 mt-6 grid grid-cols-[1fr_55px_1fr] gap-2 text-xs md:text-sm hidden items-center">
                         <div id="events-home" class="text-gray-300 space-y-2 font-medium"></div>
                         <div id="events-divider" class="flex flex-col items-center gap-2 text-gray-500 text-xs"></div>
@@ -294,6 +240,7 @@
                 </div>
             </div>
 
+            <!-- PITCH DISPLAY -->
             <div class="pitch-container">
                 <div class="pitch-lines"></div>
                 <div class="penalty-box top"></div>
@@ -314,39 +261,23 @@
 
         </div>
 
+        <!-- LOGO DECK -->
         <div class="google-card p-5 space-y-4">
             <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-3 border-b border-gray-800 pb-3">
                 <div>
-                    <h3 class="text-xs font-bold uppercase tracking-wider theme-text-accent">🛡️ 1. Logo & Flag Deck (Drag Logo ke Kotak Tim Above)</h3>
-                    <p class="text-xs text-gray-400 mt-1">Pilih dari preset klub/negara atau upload logo kustom kamu sendiri.</p>
+                    <h3 class="text-xs font-bold uppercase tracking-wider theme-text-accent">🛡️ 1. Logo & Flag Deck</h3>
+                    <p class="text-xs text-gray-400 mt-1">Drag logo ke kotak Home/Away di atas.</p>
                 </div>
                 <label class="cursor-pointer bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-3 py-2 rounded-lg transition-all shrink-0">
-                    ➕ Upload Logo Sendiri
+                    ➕ Upload Logo
                     <input type="file" id="upload-custom-logo" accept="image/*" class="hidden" onchange="uploadCustomClubLogo(this)">
                 </label>
             </div>
             
-            <div class="mb-3">
-                <input type="text" id="flag-search" oninput="filterFlags()" placeholder="Cari logo klub (e.g., Real Madrid, Persib, Arsenal, Indonesia)..." class="w-full bg-[#121212] border border-gray-800 rounded-xl px-4 py-2 text-xs focus:outline-none focus:border-blue-500 text-white">
-            </div>
-
             <div id="flag-deck" class="flex gap-4 overflow-x-auto pb-3 pt-1 custom-scroll"></div>
         </div>
 
-        <div class="google-card p-5 space-y-4">
-            <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-3 border-b border-gray-800 pb-3">
-                <div>
-                    <h3 class="text-xs font-bold uppercase tracking-wider theme-text-accent">🏃‍♂️ 2. Player Photo Deck (Drag ke Pemain Lapangan)</h3>
-                    <p class="text-xs text-gray-400 mt-1">Gunakan preset foto pemain bintang atau upload foto pemain sendiri.</p>
-                </div>
-                <label class="cursor-pointer bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-3 py-2 rounded-lg transition-all shrink-0">
-                    ➕ Upload Foto Pemain
-                    <input type="file" id="upload-custom-player" accept="image/*" class="hidden" onchange="uploadCustomPlayerPhoto(this)">
-                </label>
-            </div>
-            <div id="player-deck" class="flex gap-4 overflow-x-auto pb-3 pt-1 custom-scroll"></div>
-        </div>
-
+        <!-- CONTROL & MATCH DETAILS SETTINGS -->
         <div class="google-card p-6 space-y-6">
             <div class="flex flex-wrap justify-between items-center border-b border-gray-800 pb-4 gap-4">
                 <h3 class="text-sm font-bold tracking-wider uppercase theme-text-accent">🎮 Control & Match Engine</h3>
@@ -354,22 +285,43 @@
                     <button id="btn-clock-toggle" onclick="toggleClock()" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-lg">
                         Mulai Pertandingan
                     </button>
-                    <button id="btn-phase-advance" onclick="advancePhase()" class="bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-lg hidden">
-                        Lanjut ke Babak 2
-                    </button>
-                    <button id="btn-trigger-penalty" onclick="startPenaltyShootout()" class="bg-red-600 hover:bg-red-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-lg hidden">
-                        🎯 Penalti Shootout
-                    </button>
-                    <button id="btn-save-match" onclick="saveMatchToDatabase()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-lg hidden">
-                        💾 Simpan ke Database
+                    <button id="btn-save-match" onclick="saveMatchToDatabase()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-lg">
+                        💾 Simpan Ke Database
                     </button>
                 </div>
             </div>
 
+            <!-- FITUR EDIT MATCH DETAILS & FASE PERTANDINGAN -->
             <div class="bg-[#121212] p-4 rounded-xl border border-gray-800 space-y-4">
-                <h4 id="incident-panel-title" class="text-xs font-bold text-gray-400 uppercase tracking-wider">Trigger Match Incident</h4>
+                <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">⚙️ Pengaturan Match Details & Fase</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                    <div>
+                        <label class="text-[10px] text-gray-500 font-bold block mb-1">NAMA KOMPETISI</label>
+                        <input type="text" id="input-tournament-name" value="Scoreboard Pro" oninput="updateMatchDetails()" placeholder="Contoh: UEFA Champions League" class="w-full bg-[#2a2d32] border border-gray-700 text-xs font-bold text-white rounded-lg p-2.5 focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="text-[10px] text-gray-500 font-bold block mb-1">STAGE / DETAIL PERTANDINGAN</label>
+                        <input type="text" id="input-stage-name" value="Match Details" oninput="updateMatchDetails()" placeholder="Contoh: Group Stage - Matchday 1" class="w-full bg-[#2a2d32] border border-gray-700 text-xs font-bold text-white rounded-lg p-2.5 focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="text-[10px] text-gray-500 font-bold block mb-1">FASE PERTANDINGAN</label>
+                        <select id="select-match-phase" onchange="updateMatchPhase(this.value)" class="w-full bg-[#2a2d32] border border-gray-700 text-xs font-bold text-white rounded-lg p-2.5 focus:outline-none focus:border-blue-500">
+                            <option value="1st Half">1st Half (Babak Pertama)</option>
+                            <option value="Half Time">Half Time (Istirahat)</option>
+                            <option value="2nd Half">2nd Half (Babak Kedua)</option>
+                            <option value="Full Time">Full Time (Selesai)</option>
+                            <option value="Extra Time">Extra Time (Babak Tambahan)</option>
+                            <option value="Penalty Shootout">Penalty Shootout (Adu Penalti)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INCIDENT CONTROLS -->
+            <div class="bg-[#121212] p-4 rounded-xl border border-gray-800 space-y-4">
+                <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Trigger Match Incident</h4>
                 
-                <div id="normal-incident-controls" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
                     <div>
                         <label class="text-[10px] text-gray-500 font-bold block mb-1">TIM</label>
                         <select id="event-team" class="w-full bg-[#2a2d32] border border-gray-700 text-xs font-bold text-white rounded-lg p-2.5 focus:outline-none">
@@ -380,27 +332,16 @@
 
                     <div>
                         <label class="text-[10px] text-gray-500 font-bold block mb-1">JENIS INCIDENT</label>
-                        <select id="event-type" onchange="toggleIncidentFields()" class="w-full bg-[#2a2d32] border border-gray-700 text-xs font-bold text-white rounded-lg p-2.5 focus:outline-none">
+                        <select id="event-type" class="w-full bg-[#2a2d32] border border-gray-700 text-xs font-bold text-white rounded-lg p-2.5 focus:outline-none">
                             <option value="GOAL">⚽ Gol</option>
-                            <option value="ASSIST">👟 Assist</option>
-                            <option value="OWN_GOAL">⚽🔴 Gol Bunuh Diri (OG)</option>
-                            <option value="PENALTY_GOAL">🎯 Gol Penalti (PG)</option>
                             <option value="YELLOW">🟨 Kartu Kuning</option>
                             <option value="RED">🟥 Kartu Merah</option>
-                            <option value="YELLOW_RED">🟨🟥 Kartu Kuning Kedua</option>
-                            <option value="SUB">🔄 Substitusi Pemain</option>
-                            <option value="SAVE">🧤 Penyelamatan (Save)</option>
                         </select>
                     </div>
 
-                    <div id="player-in-group">
-                        <label id="player-in-label" class="text-[10px] text-gray-500 font-bold block mb-1">NAMA PEMAIN</label>
+                    <div class="sm:col-span-2">
+                        <label class="text-[10px] text-gray-500 font-bold block mb-1">NAMA PEMAIN</label>
                         <input type="text" id="event-player-in" placeholder="Nama Pemain..." class="w-full bg-[#2a2d32] border border-gray-700 text-xs text-white rounded-lg p-2.5 focus:outline-none">
-                    </div>
-
-                    <div id="player-out-group" class="hidden">
-                        <label class="text-[10px] text-gray-500 font-bold block mb-1">PEMAIN KELUAR</label>
-                        <input type="text" id="event-player-out" placeholder="Pemain Keluar..." class="w-full bg-[#2a2d32] border border-gray-700 text-xs text-white rounded-lg p-2.5 focus:outline-none">
                     </div>
 
                     <div class="sm:col-span-2 md:col-span-4 mt-2">
@@ -409,37 +350,9 @@
                         </button>
                     </div>
                 </div>
-
-                <div id="penalty-incident-controls" class="grid grid-cols-1 sm:grid-cols-3 gap-3 hidden">
-                    <div>
-                        <label class="text-[10px] text-gray-500 font-bold block mb-1">PENENDANG TIM</label>
-                        <select id="penalty-team" class="w-full bg-[#2a2d32] border border-gray-700 text-xs font-bold text-white rounded-lg p-2.5 focus:outline-none">
-                            <option value="home">Home Team</option>
-                            <option value="away">Away Team</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="text-[10px] text-gray-500 font-bold block mb-1">HASIL EKSEKUSI</label>
-                        <select id="penalty-result" class="w-full bg-[#2a2d32] border border-gray-700 text-xs font-bold text-white rounded-lg p-2.5 focus:outline-none">
-                            <option value="GOAL">⚽ Masuk / GOAL</option>
-                            <option value="MISS">✕ Gagal / MISS</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="text-[10px] text-gray-500 font-bold block mb-1">NAMA PENENDANG</label>
-                        <input type="text" id="penalty-player-name" placeholder="Nama Pemain..." class="w-full bg-[#2a2d32] border border-gray-700 text-xs text-white rounded-lg p-2.5 focus:outline-none">
-                    </div>
-
-                    <div class="sm:col-span-3 mt-2">
-                        <button onclick="triggerPenaltyShootout()" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs py-3 rounded-lg transition-all uppercase tracking-wider">
-                            🎯 Eksekusi Penalti
-                        </button>
-                    </div>
-                </div>
             </div>
 
+            <!-- TACTICAL LINEUP SETUP -->
             <div class="border-t border-gray-800 pt-5 space-y-4">
                 <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">📋 Tactical Lineup Setup</h4>
                 
@@ -464,13 +377,13 @@
                             <option value="4-2-3-1">4-2-3-1</option>
                             <option value="4-4-2">4-4-2</option>
                             <option value="3-5-2">3-5-2</option>
-                            <option value="5-3-2">5-3-2</option>
                         </select>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- DATABASE MATCH HISTORY -->
         <div class="google-card p-6 space-y-4">
             <div class="flex justify-between items-center border-b border-gray-800 pb-3">
                 <h3 class="text-xs font-bold uppercase tracking-wider theme-text-accent">📂 Database Riwayat Pertandingan</h3>
@@ -485,13 +398,12 @@
                             <th class="py-2 px-3">Kompetisi</th>
                             <th class="py-2 px-3">Pertandingan</th>
                             <th class="py-2 px-3">Skor Akhir</th>
-                            <th class="py-2 px-3">Penalti</th>
                             <th class="py-2 px-3 text-right">Aksi</th>
                         </tr>
                     </thead>
                     <tbody id="database-match-rows" class="divide-y divide-gray-800/50">
                         <tr>
-                            <td colspan="6" class="text-center py-4 text-gray-500">Belum ada riwayat pertandingan tersimpan.</td>
+                            <td colspan="5" class="text-center py-4 text-gray-500">Belum ada riwayat pertandingan tersimpan.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -501,130 +413,88 @@
     </main>
 
     <script>
-        // 1. DATASETS & STATE GLOBAL
         let flagPresets = [
             { id: 'rm', name: 'Real Madrid', url: 'https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg' },
             { id: 'fcb', name: 'FC Barcelona', url: 'https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crcv%29.svg' },
             { id: 'mcfc', name: 'Manchester City', url: 'https://upload.wikimedia.org/wikipedia/en/eb/eb/Manchester_City_FC_badge.svg' },
             { id: 'ars', name: 'Arsenal FC', url: 'https://upload.wikimedia.org/wikipedia/en/5/53/Arsenal_FC.svg' },
-            { id: 'persib', name: 'Persib Bandung', url: 'https://upload.wikimedia.org/wikipedia/id/8/80/Persib_Bandung_logo.svg' },
-            { id: 'persija', name: 'Persija Jakarta', url: 'https://upload.wikimedia.org/wikipedia/id/8/8c/Persija_Jakarta_logo.svg' },
             { id: 'idn', name: 'Timnas Indonesia', url: 'https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg' }
         ];
 
-        let playerPhotoPresets = [
-            { id: 'p1', name: 'Striker Bintang', url: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=100&auto=format&fit=crop&q=80' },
-            { id: 'p2', name: 'Gelandang Maestro', url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80' },
-            { id: 'p3', name: 'Bek Kokoh', url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80' }
-        ];
-
-        // MAPPING SVG UNTUK BADGE LINEUP & INCIDENT
         const SVGS = {
             "GOAL": `<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="#FFFFFF" stroke="#000000" stroke-width="1.5"/><polygon points="12,7 15,9.5 14,13 10,13 9,9.5" fill="#000000"/></svg>`,
-            "ASSIST": `<svg viewBox="0 0 24 24" fill="none"><path d="M2 17C2 17 5 13 9 13C13 13 15 15 18 15C21 15 22 13 22 13" stroke="#3B82F6" stroke-width="2.5" stroke-linecap="round"/><path d="M17 10L22 13L18 17" stroke="#3B82F6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-            "OWN_GOAL": `<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="#EF4444" stroke="#991B1B" stroke-width="1.5"/><polygon points="12,7 15,9.5 14,13 10,13 9,9.5" fill="#FFFFFF"/></svg>`,
-            "PENALTY_GOAL": `<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="10" r="6" fill="#FFFFFF" stroke="#000000" stroke-width="1.2"/><circle cx="12" cy="19" r="2" fill="#10B981"/><path d="M8 19H16" stroke="#10B981" stroke-width="1.5"/></svg>`,
             "YELLOW": `<svg viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="2" fill="#FACC15" stroke="#EAB308" stroke-width="1.5"/></svg>`,
-            "RED": `<svg viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="2" fill="#EF4444" stroke="#DC2626" stroke-width="1.5"/></svg>`,
-            "YELLOW_RED": `<svg viewBox="0 0 28 24" fill="none"><rect x="3" y="4" width="13" height="17" rx="2" fill="#FACC15" transform="rotate(-10 3 4)"/><rect x="11" y="3" width="13" height="17" rx="2" fill="#EF4444" transform="rotate(8 11 3)"/></svg>`,
-            "SUB_IN": `<svg viewBox="0 0 24 24" fill="none"><path d="M4 10H14M14 10L10 6M14 10L10 14" stroke="#22C55E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-            "SUB_OUT": `<svg viewBox="0 0 24 24" fill="none"><path d="M20 14H10M10 14L14 18M10 14L14 10" stroke="#EF4444" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-            "SAVE": `<svg viewBox="0 0 24 24" fill="none"><path d="M12 3L4 7V12C4 16.5 7.5 20.5 12 21.5C16.5 20.5 20 16.5 20 12V7L12 3Z" fill="#0EA5E9" stroke="#0284C7" stroke-width="1.5"/><path d="M9 12L11 14L15 10" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+            "RED": `<svg viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="2" fill="#EF4444" stroke="#DC2626" stroke-width="1.5"/></svg>`
         };
 
         let matchState = {
+            tournament: "Scoreboard Pro",
+            stage: "Match Details",
+            phase: "1st Half",
             homeName: "HOME",
             awayName: "AWAY",
             homeLogo: "",
             awayLogo: "",
             homeScore: 0,
             awayScore: 0,
-            homePenScore: 0,
-            awayPenScore: 0,
             activeTacticalTeam: "home",
             tacticalFormations: { home: "4-3-3", away: "4-3-3" },
             players: {
-                home: [
-                    { id: 1, number: 1, name: "Kiper Home", pos: "GK", photo: "", events: [], status: "NORMAL" },
-                    { id: 2, number: 2, name: "Bek Kiri", pos: "LB", photo: "", events: [], status: "NORMAL" },
-                    { id: 3, number: 4, name: "Bek Tengah 1", pos: "CB", photo: "", events: [], status: "NORMAL" },
-                    { id: 4, number: 5, name: "Bek Tengah 2", pos: "CB", photo: "", events: [], status: "NORMAL" },
-                    { id: 5, number: 3, name: "Bek Kanan", pos: "RB", photo: "", events: [], status: "NORMAL" },
-                    { id: 6, number: 6, name: "Gelandang 1", pos: "CM", photo: "", events: [], status: "NORMAL" },
-                    { id: 7, number: 8, name: "Gelandang 2", pos: "CM", photo: "", events: [], status: "NORMAL" },
-                    { id: 8, number: 10, name: "Playmaker", pos: "AM", photo: "", events: [], status: "NORMAL" },
-                    { id: 9, number: 7, name: "Sayap Kiri", pos: "LW", photo: "", events: [], status: "NORMAL" },
-                    { id: 10, number: 9, name: "Penyerang", pos: "ST", photo: "", events: [], status: "NORMAL" },
-                    { id: 11, number: 11, name: "Sayap Kanan", pos: "RW", photo: "", events: [], status: "NORMAL" }
-                ],
-                away: [
-                    { id: 101, number: 1, name: "Kiper Away", pos: "GK", photo: "", events: [], status: "NORMAL" },
-                    { id: 102, number: 2, name: "Bek Kiri", pos: "LB", photo: "", events: [], status: "NORMAL" },
-                    { id: 103, number: 4, name: "Bek Tengah 1", pos: "CB", photo: "", events: [], status: "NORMAL" },
-                    { id: 104, number: 5, name: "Bek Tengah 2", pos: "CB", photo: "", events: [], status: "NORMAL" },
-                    { id: 105, number: 3, name: "Bek Kanan", pos: "RB", photo: "", events: [], status: "NORMAL" },
-                    { id: 106, number: 6, name: "Gelandang 1", pos: "CM", photo: "", events: [], status: "NORMAL" },
-                    { id: 107, number: 8, name: "Gelandang 2", pos: "CM", photo: "", events: [], status: "NORMAL" },
-                    { id: 108, number: 10, name: "Playmaker", pos: "AM", photo: "", events: [], status: "NORMAL" },
-                    { id: 109, number: 7, name: "Sayap Kiri", pos: "LW", photo: "", events: [], status: "NORMAL" },
-                    { id: 110, number: 9, name: "Penyerang", pos: "ST", photo: "", events: [], status: "NORMAL" },
-                    { id: 111, number: 11, name: "Sayap Kanan", pos: "RW", photo: "", events: [], status: "NORMAL" }
-                ]
+                home: Array.from({length: 11}, (_, i) => ({ id: i + 1, number: i + 1, name: `Pemain ${i + 1}`, photo: "", events: [] })),
+                away: Array.from({length: 11}, (_, i) => ({ id: i + 101, number: i + 1, name: `Pemain ${i + 1}`, photo: "", events: [] }))
             },
             events: [],
-            penalties: [],
-            phase: "1ST_HALF", // 1ST_HALF, 2ND_HALF, FINISHED, PENALTY
             clockSeconds: 0,
             clockRunning: false,
             clockInterval: null
         };
 
-        let activeContextPlayer = null;
-
-        // 2. FORMATION MAP CONFIG
         const FORMATIONS = {
             "4-3-3": [[1], [4, 5, 2, 3], [6, 8, 10], [7, 9, 11]],
             "4-2-3-1": [[1], [4, 5, 2, 3], [6, 8], [7, 10, 11], [9]],
             "4-4-2": [[1], [4, 5, 2, 3], [6, 8, 7, 11], [9, 10]],
-            "3-5-2": [[1], [4, 5, 3], [2, 6, 8, 10, 11], [7, 9]],
-            "5-3-2": [[1], [2, 4, 5, 3, 6], [8, 10, 7], [9, 11]]
+            "3-5-2": [[1], [4, 5, 3], [2, 6, 8, 10, 11], [7, 9]]
         };
 
-        // 3. INITIALIZATION
         window.onload = function() {
             buildFlagDeck();
-            buildPlayerDeck();
             renderTacticalPitch();
             renderDatabaseTable();
-            toggleIncidentFields();
         };
 
-        // 4. DECK BUILDERS (FLAG & PLAYER DRAG)
+        /* FITUR BARU: UPDATE MATCH DETAILS & FASE */
+        function updateMatchDetails() {
+            const tournamentInput = document.getElementById('input-tournament-name').value.trim();
+            const stageInput = document.getElementById('input-stage-name').value.trim();
+
+            matchState.tournament = tournamentInput || "Scoreboard Pro";
+            matchState.stage = stageInput || "Match Details";
+
+            document.getElementById('display-tournament').innerText = matchState.tournament;
+            document.getElementById('display-stage').innerText = matchState.stage;
+        }
+
+        function updateMatchPhase(phaseVal) {
+            matchState.phase = phaseVal;
+            const statusPill = document.getElementById('match-status-pill');
+            const penHud = document.getElementById('p-score-hud');
+
+            statusPill.innerText = phaseVal;
+
+            if (phaseVal === "Penalty Shootout") {
+                statusPill.className = "text-purple-400 font-bold";
+                penHud.classList.remove('hidden');
+            } else if (phaseVal === "Half Time" || phaseVal === "Full Time") {
+                statusPill.className = "text-amber-400 font-bold";
+            } else {
+                statusPill.className = "text-green-400 font-bold";
+                penHud.classList.add('hidden');
+            }
+        }
+
         function buildFlagDeck() {
             const container = document.getElementById('flag-deck');
             container.innerHTML = flagPresets.map(f => `
-                <div draggable="true" ondragstart="handleDragStart(event, 'FLAG', '${f.url}')" class="flex flex-col items-center p-2 bg-[#121212] rounded-xl border border-gray-800 hover:border-blue-500 cursor-grab shrink-0 w-20 text-center transition-all">
-                    <img src="${f.url}" class="w-10 h-10 object-contain mb-1">
-                    <span class="text-[9px] text-gray-300 font-bold truncate w-full">${f.name}</span>
-                </div>
-            `).join('');
-        }
-
-        function buildPlayerDeck() {
-            const container = document.getElementById('player-deck');
-            container.innerHTML = playerPhotoPresets.map(p => `
-                <div draggable="true" ondragstart="handleDragStart(event, 'PLAYER_PHOTO', '${p.url}')" class="flex flex-col items-center p-2 bg-[#121212] rounded-xl border border-gray-800 hover:border-blue-500 cursor-grab shrink-0 w-20 text-center transition-all">
-                    <img src="${p.url}" class="w-10 h-10 object-cover rounded-lg mb-1">
-                    <span class="text-[9px] text-gray-300 font-bold truncate w-full">${p.name}</span>
-                </div>
-            `).join('');
-        }
-
-        function filterFlags() {
-            const query = document.getElementById('flag-search').value.toLowerCase();
-            const filtered = flagPresets.filter(f => f.name.toLowerCase().includes(query));
-            const container = document.getElementById('flag-deck');
-            container.innerHTML = filtered.map(f => `
                 <div draggable="true" ondragstart="handleDragStart(event, 'FLAG', '${f.url}')" class="flex flex-col items-center p-2 bg-[#121212] rounded-xl border border-gray-800 hover:border-blue-500 cursor-grab shrink-0 w-20 text-center transition-all">
                     <img src="${f.url}" class="w-10 h-10 object-contain mb-1">
                     <span class="text-[9px] text-gray-300 font-bold truncate w-full">${f.name}</span>
@@ -643,18 +513,6 @@
             }
         }
 
-        function uploadCustomPlayerPhoto(input) {
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    playerPhotoPresets.unshift({ id: 'p_custom_' + Date.now(), name: 'Custom Player', url: e.target.result });
-                    buildPlayerDeck();
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        // 5. DRAG AND DROP HANDLERS
         function handleDragStart(e, type, url) {
             e.dataTransfer.setData('type', type);
             e.dataTransfer.setData('url', url);
@@ -666,42 +524,22 @@
         function handleDrop(e, target) {
             e.preventDefault();
             e.currentTarget.classList.remove('dragover');
-            const type = e.dataTransfer.getData('type');
             const url = e.dataTransfer.getData('url');
 
-            if (type === 'FLAG') {
-                if (target === 'home') {
-                    matchState.homeLogo = url;
-                    document.getElementById('img-home').src = url;
-                    document.getElementById('img-home').classList.remove('hidden');
-                    document.getElementById('text-placeholder-home').classList.add('hidden');
-                } else if (target === 'away') {
-                    matchState.awayLogo = url;
-                    document.getElementById('img-away').src = url;
-                    document.getElementById('img-away').classList.remove('hidden');
-                    document.getElementById('text-placeholder-away').classList.add('hidden');
-                }
-                syncTacticalPitchHeader();
+            if (target === 'home') {
+                matchState.homeLogo = url;
+                document.getElementById('img-home').src = url;
+                document.getElementById('img-home').classList.remove('hidden');
+                document.getElementById('text-placeholder-home').classList.add('hidden');
+            } else {
+                matchState.awayLogo = url;
+                document.getElementById('img-away').src = url;
+                document.getElementById('img-away').classList.remove('hidden');
+                document.getElementById('text-placeholder-away').classList.add('hidden');
             }
+            syncTacticalPitchHeader();
         }
 
-        function handlePlayerPhotoDrop(e, playerId) {
-            e.preventDefault();
-            e.currentTarget.classList.remove('dragover');
-            const type = e.dataTransfer.getData('type');
-            const url = e.dataTransfer.getData('url');
-
-            if (type === 'PLAYER_PHOTO') {
-                const team = matchState.activeTacticalTeam;
-                const player = matchState.players[team].find(p => p.id === playerId);
-                if (player) {
-                    player.photo = url;
-                    renderTacticalPitch();
-                }
-            }
-        }
-
-        // 6. RENDER TACTICAL LAPANGAN BOLA
         function renderTacticalPitch() {
             const team = matchState.activeTacticalTeam;
             const formationKey = matchState.tacticalFormations[team];
@@ -720,7 +558,6 @@
                     if (playerIndex >= players.length) return;
                     const p = players[playerIndex];
 
-                    // Render event badges (SVG) di atas icon pemain
                     let eventsHtml = "";
                     if (p.events && p.events.length > 0) {
                         const iconsList = p.events.map(evt => SVGS[evt] || "").join("");
@@ -730,8 +567,8 @@
                     const slotDiv = document.createElement('div');
                     slotDiv.className = "player-slot";
                     slotDiv.innerHTML = `
-                        <div class="player-icon" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="handlePlayerPhotoDrop(event, ${p.id})" oncontextmenu="openContextMenu(event, ${p.id})">
-                            ${p.photo ? `<img src="${p.photo}">` : `<span>${p.number}</span>`}
+                        <div class="player-icon">
+                            <span>${p.number}</span>
                             ${eventsHtml}
                         </div>
                         <input type="text" value="${p.name}" onchange="updatePlayerName(${p.id}, this.value)" class="player-name-input">
@@ -785,92 +622,34 @@
         }
 
         function changeTacticalFormation(val) {
-            const team = matchState.activeTacticalTeam;
-            matchState.tacticalFormations[team] = val;
+            matchState.tacticalFormations[matchState.activeTacticalTeam] = val;
             renderTacticalPitch();
         }
 
         function updatePlayerName(playerId, newName) {
             const team = matchState.activeTacticalTeam;
             const player = matchState.players[team].find(p => p.id === playerId);
-            if (player) {
-                player.name = newName;
-            }
-        }
-
-        // 7. MATCH ENGINE & INCIDENT SYNC (SINKRONISASI DATABASE KE LAPANGAN)
-        function toggleIncidentFields() {
-            const type = document.getElementById('event-type').value;
-            const groupOut = document.getElementById('player-out-group');
-            const labelIn = document.getElementById('player-in-label');
-
-            if (type === 'SUB') {
-                groupOut.classList.remove('hidden');
-                labelIn.innerText = "PEMAIN MASUK";
-            } else {
-                groupOut.classList.add('hidden');
-                labelIn.innerText = "NAMA PEMAIN";
-            }
+            if (player) player.name = newName;
         }
 
         function triggerIncident() {
             const team = document.getElementById('event-team').value;
             const type = document.getElementById('event-type').value;
             const nameIn = document.getElementById('event-player-in').value.trim();
-            const nameOut = document.getElementById('event-player-out').value.trim();
 
-            if (!nameIn) {
-                alert("Masukkan nama pemain terlebih dahulu!");
-                return;
-            }
+            if (!nameIn) return alert("Masukkan nama pemain terlebih dahulu!");
 
             const timeStr = formatClockTime(matchState.clockSeconds);
 
-            // 1. Update Skor jika GOL / PENALTY_GOAL / OWN_GOAL
-            if (type === 'GOAL' || type === 'PENALTY_GOAL') {
-                modifyScoreDirectly(team, 1);
-            } else if (type === 'OWN_GOAL') {
-                const opponentTeam = team === 'home' ? 'away' : 'home';
-                modifyScoreDirectly(opponentTeam, 1);
-            }
+            if (type === 'GOAL') modifyScoreDirectly(team, 1);
 
-            // 2. Sinkronkan ke Data Lineup Lapangan Pemain
-            const targetTeamPlayers = matchState.players[team];
-            const player = targetTeamPlayers.find(p => p.name.toLowerCase() === nameIn.toLowerCase());
+            const player = matchState.players[team].find(p => p.name.toLowerCase() === nameIn.toLowerCase());
+            if (player) player.events.push(type);
 
-            if (player) {
-                if (type === 'SUB') {
-                    player.events.push('SUB_IN');
-                } else {
-                    player.events.push(type);
-                }
-            }
+            let desc = `${type === 'GOAL' ? '⚽ Gol' : type === 'YELLOW' ? '🟨 Kartu Kuning' : '🟥 Kartu Merah'} - ${nameIn} (${timeStr}')`;
+            matchState.events.push({ team, desc });
 
-            // Jika Substitusi, tandai pemain yang keluar juga
-            if (type === 'SUB' && nameOut) {
-                const playerOut = targetTeamPlayers.find(p => p.name.toLowerCase() === nameOut.toLowerCase());
-                if (playerOut) {
-                    playerOut.events.push('SUB_OUT');
-                }
-            }
-
-            // 3. Tambahkan ke Log Events Timeline
-            let desc = "";
-            if (type === 'GOAL') desc = `⚽ Gol - ${nameIn} (${timeStr}')`;
-            else if (type === 'ASSIST') desc = `👟 Assist - ${nameIn} (${timeStr}')`;
-            else if (type === 'OWN_GOAL') desc = `⚽🔴 Gol Bunuh Diri - ${nameIn} (${timeStr}')`;
-            else if (type === 'PENALTY_GOAL') desc = `🎯 Gol Penalti - ${nameIn} (${timeStr}')`;
-            else if (type === 'YELLOW') desc = `🟨 Kartu Kuning - ${nameIn} (${timeStr}')`;
-            else if (type === 'RED') desc = `🟥 Kartu Merah - ${nameIn} (${timeStr}')`;
-            else if (type === 'YELLOW_RED') desc = `🟨🟥 Kartu Kuning Kedua - ${nameIn} (${timeStr}')`;
-            else if (type === 'SUB') desc = `🔄 Substitusi - Masuk: ${nameIn}, Keluar: ${nameOut} (${timeStr}')`;
-            else if (type === 'SAVE') desc = `🧤 Save - ${nameIn} (${timeStr}')`;
-
-            matchState.events.push({ team, desc, time: timeStr });
-
-            // Reset Input & Render Ulang Lapangan & Timeline
             document.getElementById('event-player-in').value = "";
-            document.getElementById('event-player-out').value = "";
             renderIncidentsPanel();
             renderTacticalPitch();
         }
@@ -891,11 +670,6 @@
             const containerAway = document.getElementById('events-away');
             const divider = document.getElementById('events-divider');
 
-            if (matchState.events.length === 0) {
-                box.classList.add('hidden');
-                return;
-            }
-
             box.classList.remove('hidden');
             containerHome.innerHTML = "";
             containerAway.innerHTML = "";
@@ -912,7 +686,6 @@
             });
         }
 
-        // 8. CLOCK ENGINE
         function toggleClock() {
             const btn = document.getElementById('btn-clock-toggle');
             if (matchState.clockRunning) {
@@ -928,67 +701,14 @@
                 matchState.clockInterval = setInterval(() => {
                     matchState.clockSeconds++;
                     document.getElementById('clock-display').innerText = formatClockTime(matchState.clockSeconds);
-                    
-                    if (matchState.phase === '1ST_HALF' && matchState.clockSeconds >= 2700) { // 45 Menit
-                        pauseClockAtHalfTime();
-                    }
                 }, 1000);
             }
-        }
-
-        function pauseClockAtHalfTime() {
-            clearInterval(matchState.clockInterval);
-            matchState.clockRunning = false;
-            document.getElementById('btn-clock-toggle').classList.add('hidden');
-            document.getElementById('btn-phase-advance').classList.remove('hidden');
-            document.getElementById('match-status-pill').innerText = "Half Time (HT)";
-            document.getElementById('match-status-pill').className = "text-amber-400 font-bold";
-        }
-
-        function advancePhase() {
-            matchState.phase = "2ND_HALF";
-            document.getElementById('btn-phase-advance').classList.add('hidden');
-            document.getElementById('btn-clock-toggle').classList.remove('hidden');
-            document.getElementById('btn-clock-toggle').innerText = "Mulai Babak 2";
-            document.getElementById('match-status-pill').innerText = "2nd Half";
-            document.getElementById('match-status-pill').className = "text-green-400 font-bold";
-            toggleClock();
         }
 
         function formatClockTime(seconds) {
             const mins = Math.floor(seconds / 60);
             const secs = seconds % 60;
             return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-        }
-
-        // 9. CONTEXT MENU & THEME SWITCHER
-        function openContextMenu(e, playerId) {
-            e.preventDefault();
-            activeContextPlayer = playerId;
-            const menu = document.getElementById('custom-context-menu');
-            menu.style.display = 'block';
-            menu.style.left = `${e.pageX}px`;
-            menu.style.top = `${e.pageY}px`;
-        }
-
-        document.addEventListener('click', function(e) {
-            const menu = document.getElementById('custom-context-menu');
-            if (menu && !menu.contains(e.target)) {
-                menu.style.display = 'none';
-            }
-        });
-
-        function promptChangeJerseyNumber() {
-            if (!activeContextPlayer) return;
-            const team = matchState.activeTacticalTeam;
-            const player = matchState.players[team].find(p => p.id === activeContextPlayer);
-            if (player) {
-                const num = prompt("Masukkan No. Punggung Baru:", player.number);
-                if (num !== null) {
-                    player.number = parseInt(num) || player.number;
-                    renderTacticalPitch();
-                }
-            }
         }
 
         function changeCompetitionTheme(themeClass) {
@@ -1000,17 +720,15 @@
             else badge.innerText = "Standard Dark Mode";
         }
 
-        // 10. DATABASE HISTORY SAVING
         function saveMatchToDatabase() {
             const history = JSON.parse(localStorage.getItem('match_history') || '[]');
             const record = {
                 id: Date.now(),
                 date: new Date().toLocaleDateString('id-ID'),
-                tournament: "Scoreboard Pro",
+                tournament: matchState.tournament,
                 home: matchState.homeName,
                 away: matchState.awayName,
-                score: `${matchState.homeScore} - ${matchState.awayScore}`,
-                penalties: `${matchState.homePenScore} - ${matchState.awayPenScore}`
+                score: `${matchState.homeScore} - ${matchState.awayScore}`
             };
             history.unshift(record);
             localStorage.setItem('match_history', JSON.stringify(history));
@@ -1023,7 +741,7 @@
             const container = document.getElementById('database-match-rows');
 
             if (history.length === 0) {
-                container.innerHTML = `<tr><td colspan="6" class="text-center py-4 text-gray-500">Belum ada riwayat pertandingan tersimpan.</td></tr>`;
+                container.innerHTML = `<tr><td colspan="5" class="text-center py-4 text-gray-500">Belum ada riwayat pertandingan tersimpan.</td></tr>`;
                 return;
             }
 
@@ -1033,7 +751,6 @@
                     <td class="py-2.5 px-3 font-bold text-blue-400">${item.tournament}</td>
                     <td class="py-2.5 px-3 font-bold text-white">${item.home} vs ${item.away}</td>
                     <td class="py-2.5 px-3 font-extrabold text-green-400">${item.score}</td>
-                    <td class="py-2.5 px-3 text-purple-400">${item.penalties}</td>
                     <td class="py-2.5 px-3 text-right">
                         <button onclick="deleteMatchRecord(${item.id})" class="text-red-400 hover:text-red-300 font-bold">Hapus</button>
                     </td>
